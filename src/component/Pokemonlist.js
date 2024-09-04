@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import PokemonDetails from "./PokemonDetails"; // Import the PokemonDetails component
+import PokemonDetails from "./PokemonDetails"; 
 
 const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([]);  // State for list of Pokémon
-  const [selectedPokemon, setSelectedPokemon] = useState(null);  // State for selected Pokémon
+  const [pokemons, setPokemons] = useState([]); 
+  const [selectedPokemon, setSelectedPokemon] = useState(null); 
 
-  // Fetch Pokémon list when the component mounts
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=10")  // Adjust limit as needed
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=10") 
       .then((res) => res.json())
       .then((data) => setPokemons(data.results));
   }, []);
 
-  // Function to handle clicking a Pokémon
   const handlePokemonClick = async (pokemonUrl) => {
-    const res = await fetch(pokemonUrl);  // Fetch details for clicked Pokémon
+    const res = await fetch(pokemonUrl); 
     const data = await res.json();
-    setSelectedPokemon(data);  // Set selected Pokémon data
+    setSelectedPokemon(data);  
   };
 
   return (
@@ -27,7 +25,7 @@ const PokemonList = () => {
           <div
             key={index}
             className="pokemon-item"
-            onClick={() => handlePokemonClick(pokemon.url)}  // Set click handler
+            onClick={() => handlePokemonClick(pokemon.url)}
             style={{ cursor: "pointer", marginBottom: "10px" }}
           >
             {pokemon.name}
@@ -35,7 +33,7 @@ const PokemonList = () => {
         ))}
       </div>
       
-      {/* Conditionally render PokemonDetails if a Pokémon is selected */}
+      
       {selectedPokemon && <PokemonDetails pokemon={selectedPokemon} />}
     </div>
   );

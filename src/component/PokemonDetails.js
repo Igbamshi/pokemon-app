@@ -1,5 +1,4 @@
 import React from "react";
-
 const PokemonDetails = ({ pokemon }) => {
   return (
     <>
@@ -18,8 +17,7 @@ const PokemonDetails = ({ pokemon }) => {
                 <div className="group" key={index}>
                   <h2>{poke.ability.name}</h2> 
                 </div>
-              );
-            })}
+              );})}
           </div>
           <div className="base-stat">
             {pokemon.stats.map((poke, index) => {
@@ -35,7 +33,5 @@ const PokemonDetails = ({ pokemon }) => {
         </>
       )}
     </>
-  );
-};
-
+  );};
 export default PokemonDetails;
